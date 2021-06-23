@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #ball {
+            width: 40px;
+            height: 40px;
+            background: red;
+            position: absolute;
+        }
+
+        #ball:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="ball"></div>
+<div id="door"></div>
+<script>
+    const ball = document.querySelector('#ball')
+
+    let startDrag = false
+
+    ball.addEventListener('mousedown', () => {
+        startDrag = true
+    })
+
+    document.addEventListener('mouseup', (e) => {
+        startDrag = false
+    })
+
+
+    document.addEventListener('mousemove', (e) => {
+        if (!startDrag) return
+        // 元素拖曳时,对鼠标位置居中
+        let x = e.pageX - ball.offsetWidth / 2
+        let y = e.pageY - ball.offsetHeight / 2
+        ball.style.left = `${x}px`
+        ball.style.top = `${y}px`
+    })
+</script>
+
+</body>
+</html>
